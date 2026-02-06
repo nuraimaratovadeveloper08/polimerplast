@@ -7,7 +7,7 @@ import heroBg from '../assets/zavod3.jpeg';
 export function Hero() {
 
   return (
-    <section className="relative min-h-screen flex items-center px-4 sm:px-6 lg:px-8 overflow-hidden">
+<section className="relative min-h-[100svh] flex items-center px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Background Video */}
       <div className="absolute inset-0">
       <motion.img
@@ -40,14 +40,14 @@ export function Hero() {
               transition={{ duration: 0.6 }}
             />
             
-            <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
               Производство{' '}
               <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                 полиэтиленовой упаковки
               </span>
             </h1>
 
-            <p className="text-lg text-slate-300 mb-8 leading-relaxed">
+            <p className="text-xs lg:text-3xl text-slate-300 mb-8 leading-relaxed">
               Мы предлагаем полный спектр услуг по производству и потребностям вашего бизнеса. 
               Чтобы производить качественную полиэтиленовую упаковку мы используем новейшее оборудование.
             </p>
@@ -74,99 +74,47 @@ export function Hero() {
             </motion.a>
           </motion.div>
 
-          {/* Right Stats */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-6"
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              // transition={{ delay: 0.4 }}
-              whileHover={{ 
-                scale: 1.05, 
-                y: -5,
-                boxShadow: "0 10px 30px -5px rgba(255, 255, 255, 0.2)"
-              }}
-              transition={{ 
-                opacity: { delay: 0.4, duration: 0.5 },
-                y: { delay: 0.4 },
-                scale: { type: "spring", stiffness: 400, damping: 10 } 
-              }}
-              className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 text-center"
-            >
-              <motion.div 
-                className="text-4xl font-bold text-white mb-2"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ 
-                  delay: 0.6,
-                  type: "spring",
-                  stiffness: 200,
-                  damping: 10
-                }}
-              >
-                30+
-              </motion.div>
-              <div className="text-slate-300">Лет опыта</div>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              whileHover={{ 
-                scale: 1.05, 
-                y: -5,
-                boxShadow: "0 10px 30px -5px rgba(255, 255, 255, 0.2)"
-              }}
-              className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 text-center"
-            >
-              <motion.div 
-                className="text-4xl font-bold text-white mb-2"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ 
-                  delay: 0.7,
-                  type: "spring",
-                  stiffness: 200,
-                  damping: 10
-                }}
-              >
-                10 000+
-              </motion.div>
-              <div className="text-slate-300">Клиентов</div>
-            </motion.div>
-            
-            {/* <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              whileHover={{ 
-                scale: 1.05, 
-                y: -5,
-                boxShadow: "0 10px 30px -5px rgba(255, 255, 255, 0.2)"
-              }}
-              className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 text-center"
-            >
-              <motion.div 
-                className="text-4xl font-bold text-white mb-2"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ 
-                  delay: 0.8,
-                  type: "spring",
-                  stiffness: 200,
-                  damping: 10
-                }}
-              >
-                24/7
-              </motion.div>
-              <div className="text-slate-300">Поддержка</div>
-            </motion.div> */}
-          </motion.div>
+          {/* Right Stats — Сделал адаптивную сетку для мобилок */}
+<motion.div
+  initial={{ opacity: 0, x: 50 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.8, delay: 0.2 }}
+  className="grid grid-cols-2 lg:grid-cols-1 gap-3 sm:gap-6 mt-8 lg:mt-0"
+>
+  <motion.div
+    whileHover={{ scale: 1.05, y: -5 }}
+    className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-3 sm:p-6 text-center"
+  >
+    <motion.div 
+      className="text-xl sm:text-4xl font-bold text-white mb-1"
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      transition={{ delay: 0.6, type: "spring", stiffness: 200, damping: 10 }}
+    >
+      30+
+    </motion.div>
+    <div className="text-[10px] sm:text-sm lg:text-base text-slate-300 uppercase tracking-wider">
+      Лет опыта
+    </div>
+  </motion.div>
+  
+  <motion.div
+    whileHover={{ scale: 1.05, y: -5 }}
+    className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-3 sm:p-6 text-center"
+  >
+    <motion.div 
+      className="text-xl sm:text-4xl font-bold text-white mb-1"
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      transition={{ delay: 0.7, type: "spring", stiffness: 200, damping: 10 }}
+    >
+      10 000+
+    </motion.div>
+    <div className="text-[10px] sm:text-sm lg:text-base text-slate-300 uppercase tracking-wider">
+      Клиентов
+    </div>
+  </motion.div>
+</motion.div>
         </div>
       </div>
     </section>
