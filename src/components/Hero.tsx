@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import logo from '../assets/92395d5c6beb33de133f6ced28c9b6a2f451dbba.png';
-import videoBg from '../../src/assets/paketi.mp4';
+import heroBg from '../assets/zavod3.jpeg';
 
 export function Hero() {
 
@@ -10,16 +10,14 @@ export function Hero() {
     <section className="relative min-h-screen flex items-center px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Background Video */}
       <div className="absolute inset-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
+      <motion.img
+          initial={{ scale: 1.1, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1.5 }}
+          src={heroBg}
+          alt="Производство"
           className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src={videoBg} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        />
         
         {/* Dark Overlay — оставляем ваш градиент поверх видео */}
         <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/85 to-slate-900/70" />
