@@ -85,11 +85,11 @@ export function Header() {
               )}
               <a href="#contacts" className="text-slate-700 hover:text-blue-600 transition-colors" onClick={closeMenu}>Контакты</a>
               <div className="flex flex-col gap-2 pt-4 border-t border-slate-200">
-                <a href="tel:+78772531636" className="text-slate-700 hover:text-blue-600 transition-colors">
-                  8 (877) 253-16-36
+                <a href="tel:+77172531330" className="text-slate-700 hover:text-blue-600 transition-colors">
+                  +7 717 253 13 30
                 </a>
-                <a href="tel:+77779803120" className="text-slate-700 hover:text-blue-600 transition-colors">
-                  +7 (777) 980-31-20
+                <a href="tel:+77789801120" className="text-slate-700 hover:text-blue-600 transition-colors">
+                  +7 778 980 11 20
                 </a>
               </div>
             </nav>

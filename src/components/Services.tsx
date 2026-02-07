@@ -63,14 +63,14 @@ export function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ 
                   delay: index * 0.15,
-                  type: "spring",
+                  type: "easeOut",
                   stiffness: 100,
                   damping: 12
                 }}
                 viewport={{ once: true }}
                 whileHover={{ 
                   y: -12,
-                  transition: { type: "spring", stiffness: 400, damping: 15 }
+                  transition: { type: "easeOut", stiffness: 400, damping: 15 }
                 }}
                 className="group relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all w-full"
               >

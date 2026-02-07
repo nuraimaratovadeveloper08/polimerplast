@@ -12,7 +12,7 @@ export function Hero() {
       <div className="absolute inset-0">
       <motion.img
           initial={{ scale: 1.1, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
+          whileInView={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1.5 }}
           src={heroBg}
           alt="Производство"
@@ -28,7 +28,7 @@ export function Hero() {
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
+            whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
             <motion.img 
@@ -36,7 +36,7 @@ export function Hero() {
               alt="Полимер Пласт"
               className="h-16 sm:h-20 mb-8 object-contain"
               initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             />
             
@@ -62,7 +62,7 @@ export function Hero() {
             >
               Оставить заявку
               <motion.div
-                animate={{ x: [0, 4, 0] }}
+                whileInView={{ x: [0, 4, 0] }}
                 transition={{ 
                   repeat: Infinity, 
                   duration: 1.5,
@@ -77,7 +77,7 @@ export function Hero() {
           {/* Right Stats — Сделал адаптивную сетку для мобилок */}
 <motion.div
   initial={{ opacity: 0, x: 50 }}
-  animate={{ opacity: 1, x: 0 }}
+  whileInView={{ opacity: 1, x: 0 }}
   transition={{ duration: 0.8, delay: 0.2 }}
   className="grid grid-cols-2 lg:grid-cols-1 gap-3 sm:gap-6 mt-8 lg:mt-0"
 >
@@ -88,7 +88,7 @@ export function Hero() {
     <motion.div 
       className="text-xl sm:text-4xl font-bold text-white mb-1"
       initial={{ scale: 0 }}
-      animate={{ scale: 1 }}
+      whileInView={{ scale: 1 }}
       transition={{ delay: 0.6, type: "spring", stiffness: 200, damping: 10 }}
     >
       30+
@@ -105,7 +105,7 @@ export function Hero() {
     <motion.div 
       className="text-xl sm:text-4xl font-bold text-white mb-1"
       initial={{ scale: 0 }}
-      animate={{ scale: 1 }}
+      whileInView={{ scale: 1 }}
       transition={{ delay: 0.7, type: "spring", stiffness: 200, damping: 10 }}
     >
       10 000+
