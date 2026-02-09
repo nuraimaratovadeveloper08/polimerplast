@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Mail, MessageCircle } from 'lucide-react';
+import { Phone, Mail, MapPin } from 'lucide-react';
 import logo from 'figma:asset/92395d5c6beb33de133f6ced28c9b6a2f451dbba.png';
 
 export function Footer() {
@@ -37,6 +37,12 @@ export function Footer() {
               <a href="mailto:polimer_astana@mail.ru" className="text-slate-300 hover:text-white transition-colors">
                 polimer_astana@mail.ru
               </a>
+            </div>
+            <div className="sm:col-span-2 flex items-center gap-3 bg-slate-800/50 p-4 rounded-xl">
+              <MapPin className="w-5 h-5 text-red-400 flex-shrink-0" />
+              <span className="text-slate-300 text-sm">
+                Казахстан, г. Астана, ул. Аксай 11
+              </span>
             </div>
 
             <div className="sm:col-span-2 flex items-center justify-center gap-3 bg-gradient-to-r from-green-600 to-green-500 p-4 rounded-xl hover:from-green-500 hover:to-green-400 transition-all">
