@@ -7,11 +7,13 @@ import { Footer } from './components/Footer';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { ScrollToTop } from './components/ScrollToTop';
 import ScrollToTopPage from './components/ScrollToTopPage';
+import { MetaPixelTracker } from './components/MetaPixelTracker';
 
 
 export default function App() {
   return (
     <Router>
+      <MetaPixelTracker />
       <ScrollToTopPage />
       <div className="max-w-full overflow-x-hidden min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100">
         <Header />

@@ -2,6 +2,7 @@ import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Send } from 'lucide-react';
 import { useState } from 'react';
+import { track } from '../lib/fpixel';
 
 interface OrderModalProps {
   isOpen: boolean;
@@ -22,6 +23,11 @@ export function OrderModal({ isOpen, onClose }: OrderModalProps) {
     e.preventDefault();
     // Here you would normally send the data to your backend
     console.log('Form submitted:', formData);
+    track(
+      'Lead',
+      { content_name: 'Order form' },
+      { email: formData.email || undefined, phone: formData.phone || undefined },
+    );
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);

@@ -26,3 +26,11 @@ declare module '*.mp4' {
     const content: any;
     export default content;
   }
+
+declare global {
+  interface Window {
+    fbq?: (...args: unknown[]) => void;
+  }
+}
+
+export {};
