@@ -32,8 +32,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ ok: false, error: 'method_not_allowed' });
   }
 
-  const { META_PIXEL_ID, META_CAPI_ACCESS_TOKEN, META_CAPI_TEST_EVENT_CODE } = process.env;
-  if (!META_PIXEL_ID || !META_CAPI_ACCESS_TOKEN) {
+  const PIXEL_ID = process.env.META_PIXEL_ID ?? '2144114386381224';
+  const accessToken = process.env.FB_ACCESS_TOKEN ?? process.env.META_CAPI_ACCESS_TOKEN;
+  const META_CAPI_TEST_EVENT_CODE = process.env.META_CAPI_TEST_EVENT_CODE;
+  if (!accessToken) {
     return res.status(500).json({ ok: false, error: 'env_missing' });
   }
 
@@ -86,7 +88,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     event.custom_data = custom_data;
   }
 
-  const url = `https://graph.facebook.com/v19.0/${META_PIXEL_ID}/events?access_token=${encodeURIComponent(META_CAPI_ACCESS_TOKEN)}`;
+  const url = `https://graph.facebook.com/v19.0/${PIXEL_ID}/events?access_token=${encodeURIComponent(accessToken)}`;
 
   const payload: Record<string, unknown> = { data: [event] };
   if (META_CAPI_TEST_EVENT_CODE?.trim()) {
