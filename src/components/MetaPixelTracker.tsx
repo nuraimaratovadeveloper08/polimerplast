@@ -2,6 +2,12 @@ import React, { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { pageview, track } from '../lib/fpixel';
 
+declare global {
+  interface Window {
+    ym?: (id: number, action: string, ...args: unknown[]) => void;
+  }
+}
+
 export function MetaPixelTracker() {
   const location = useLocation();
   const isFirst = useRef(true);
@@ -12,6 +18,7 @@ export function MetaPixelTracker() {
       return;
     }
     pageview();
+    window.ym?.(109128838, 'hit', window.location.href, { referrer: document.referrer });
   }, [location.pathname, location.search]);
 
   useEffect(() => {
