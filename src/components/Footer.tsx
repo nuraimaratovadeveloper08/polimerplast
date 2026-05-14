@@ -43,9 +43,20 @@ export function Footer() {
 
             <div className="flex items-center gap-3 bg-slate-800/50 p-4 rounded-xl">
               <Mail className="w-5 h-5 text-purple-400 flex-shrink-0" />
-              <a href="mailto:polimer_astana@mail.ru" className="text-slate-300 hover:text-white transition-colors">
-                polimer_astana@mail.ru
-              </a>
+              <div className="flex flex-col gap-3">
+                <div>
+                  <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">Отдел сбыта</p>
+                  <a href="mailto:polimer_astana@mail.ru" className="text-slate-300 hover:text-white transition-colors block">
+                    polimer_astana@mail.ru
+                  </a>
+                </div>
+                <div>
+                  <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">Отдел продаж</p>
+                  <a href="mailto:salespaketi@gmail.com" className="text-slate-300 hover:text-white transition-colors block">
+                    salespaketi@gmail.com
+                  </a>
+                </div>
+              </div>
             </div>
             <div className="sm:col-span-2 flex items-center gap-3 bg-slate-800/50 p-4 rounded-xl">
               <MapPin className="w-5 h-5 text-red-400 flex-shrink-0" />
