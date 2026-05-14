@@ -78,7 +78,7 @@ export function CTA() {
               className="flex flex-wrap justify-center gap-4"
             >
               <motion.a
-                href={`https://wa.me/77789801120?text=${encodeURIComponent("Здравствуйте! Можно узнать подробнее об услугах?")}`}
+                href={`https://wa.me/77070402121?text=${encodeURIComponent("Здравствуйте! Можно узнать подробнее об услугах?")}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ 
@@ -92,7 +92,7 @@ export function CTA() {
               </motion.a>
               
               <motion.a
-                href="tel:+77789801120"
+                href="tel:+77070402121"
                 whileHover={{ 
                   scale: 1.05,
                   backgroundColor: "rgba(255, 255, 255, 0.2)"

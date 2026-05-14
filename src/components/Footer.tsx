@@ -22,13 +22,22 @@ export function Footer() {
           <div className="grid sm:grid-cols-2 gap-6">
             <div className="flex items-center gap-3 bg-slate-800/50 p-4 rounded-xl">
               <Phone className="w-5 h-5 text-blue-400 flex-shrink-0" />
-              <div>
-                <a href="tel:+77172531330" className="text-slate-300 hover:text-white transition-colors block">
-                  8 (717) 253-13-30
-                </a>
-                <a href="tel:+77789801120" className="text-slate-300 hover:text-white transition-colors block">
-                  +7 (778) 980-11-20
-                </a>
+              <div className="flex flex-col gap-3 w-full">
+                <div>
+                  <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">Отдел сбыта</p>
+                  <a href="tel:+77172531330" className="text-slate-300 hover:text-white transition-colors block">
+                    +7 (717) 253-13-30
+                  </a>
+                  <a href="tel:+77789801120" className="text-slate-300 hover:text-white transition-colors block">
+                    +7 (778) 980-11-20
+                  </a>
+                </div>
+                <div>
+                  <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">Отдел продаж</p>
+                  <a href="tel:+77070402121" className="text-slate-300 hover:text-white transition-colors block">
+                    +7 (707) 040-21-21
+                  </a>
+                </div>
               </div>
             </div>
 
@@ -52,7 +61,7 @@ export function Footer() {
                 className="w-8 h-8"
               />
               <a 
-                href={`https://wa.me/77789801120?text=${encodeURIComponent("Здравствуйте! Можно узнать подробнее об услугах?")}`}
+                href={`https://wa.me/77070402121?text=${encodeURIComponent("Здравствуйте! Можно узнать подробнее об услугах?")}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white font-medium"

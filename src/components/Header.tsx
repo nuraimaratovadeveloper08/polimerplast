@@ -52,7 +52,7 @@ export function Header() {
             </div>
             <div className="flex items-center gap-2 text-slate-700">
               <Phone className="w-4 h-4 text-blue-600" />
-              <a href="tel:+77789801120" className="hover:text-blue-600 transition-colors">+7 (778) 980-11-20</a>
+              <a href="tel:+77070402121" className="hover:text-blue-600 transition-colors">+7 (707) 040 21 21</a>
             </div>
           </div>
 
@@ -88,8 +88,8 @@ export function Header() {
                 <a href="tel:+77172531330" className="text-slate-700 hover:text-blue-600 transition-colors">
                   +7 717 253 13 30
                 </a>
-                <a href="tel:+77789801120" className="text-slate-700 hover:text-blue-600 transition-colors">
-                  +7 778 980 11 20
+                <a href="tel:+77070402121" className="text-slate-700 hover:text-blue-600 transition-colors">
+                  +7 707 040 21 21
                 </a>
               </div>
             </nav>

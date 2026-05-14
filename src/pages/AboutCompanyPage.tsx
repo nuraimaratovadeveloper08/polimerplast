@@ -264,7 +264,7 @@ export function AboutCompanyPage() {
             <h3 style={{ fontSize: isMobile ? '24px' : '36px', fontWeight: 700, marginBottom: '16px' }}>Нужна качественная упаковка?</h3>
             <p style={{ fontSize: '18px', opacity: 0.9, marginBottom: '32px' }}>Свяжитесь с нами прямо сейчас для расчета стоимости</p>
             <a 
-              href={`https://wa.me/77789801120?text=${encodeURIComponent("Здравствуйте! Можно узнать подробнее об услугах?")}`}
+              href={`https://wa.me/77070402121?text=${encodeURIComponent("Здравствуйте! Можно узнать подробнее об услугах?")}`}
               target="_blank"
               style={{ 
                 display: 'inline-block', 

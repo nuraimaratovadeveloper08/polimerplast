@@ -53,7 +53,7 @@ export function Hero() {
             </p>
 
             <motion.a
-              href={`https://wa.me/77789801120?text=${encodeURIComponent("Здравствуйте! Можно узнать подробнее об услугах?")}`}
+              href={`https://wa.me/77070402121?text=${encodeURIComponent("Здравствуйте! Можно узнать подробнее об услугах?")}`}
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05, boxShadow: "0 20px 25px -5px rgb(59 130 246 / 0.5)" }}
