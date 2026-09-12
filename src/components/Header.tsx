@@ -3,7 +3,7 @@ import { Phone, Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { useState } from 'react';
-import logo from 'figma:asset/92395d5c6beb33de133f6ced28c9b6a2f451dbba.png';
+import logo from '../assets/new_logo_1.png';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,7 +28,9 @@ export function Header() {
             <img 
               src={logo} 
               alt="Полимер Пласт"
-              className="h-12 sm:h-14 object-contain"
+              width={220}
+              height={70}
+              className="object-contain"
             />
           </motion.div>
 

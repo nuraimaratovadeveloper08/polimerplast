@@ -1,6 +1,6 @@
 import React from 'react';
 import { Phone, Mail, MapPin } from 'lucide-react';
-import logo from 'figma:asset/92395d5c6beb33de133f6ced28c9b6a2f451dbba.png';
+import logo from '../assets/new_logo.png';
 
 export function Footer() {
   return (
@@ -11,7 +11,9 @@ export function Footer() {
             <img 
               src={logo} 
               alt="Полимер Пласт"
-              className="h-16 mx-auto mb-4 object-contain"
+              width={200}
+              height={100}
+              className="mx-auto mb-4 object-contain"
             />
             <p className="text-slate-400">
               Производство полиэтиленовой упаковки высшего качества

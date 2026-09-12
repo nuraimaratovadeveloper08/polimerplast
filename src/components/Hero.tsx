@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
-import logo from '../assets/92395d5c6beb33de133f6ced28c9b6a2f451dbba.png';
+import logo from '../assets/new_logo.png';
 import heroBg from '../assets/zavod3.jpeg';
 
 export function Hero() {
@@ -31,13 +31,12 @@ export function Hero() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <motion.img 
+            <img 
               src={logo} 
               alt="Полимер Пласт"
-              className="h-16 sm:h-20 mb-8 object-contain"
-              initial={{ opacity: 0, y: -20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              width={270}
+              height={100}
+              className="object-contain"
             />
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
