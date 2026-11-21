@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { X, Send } from 'lucide-react';
 import { useState } from 'react';
 import { track } from '../lib/fpixel';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface OrderModalProps {
   isOpen: boolean;
@@ -10,6 +11,7 @@ interface OrderModalProps {
 }
 
 export function OrderModal({ isOpen, onClose }: OrderModalProps) {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -60,10 +62,10 @@ export function OrderModal({ isOpen, onClose }: OrderModalProps) {
               {/* Header */}
               <div className="relative p-6 border-b border-slate-200">
                 <h3 className="text-2xl font-bold text-slate-900">
-                  Оставить заявку
+                  {t.common.apply}
                 </h3>
                 <p className="text-slate-600 mt-1">
-                  Заполните форму и мы свяжемся с вами
+                  {t.orderModal.subtitle}
                 </p>
                 <button
                   onClick={onClose}
@@ -85,17 +87,17 @@ export function OrderModal({ isOpen, onClose }: OrderModalProps) {
                       <Send className="w-8 h-8 text-white" />
                     </div>
                     <h4 className="text-xl font-semibold text-slate-900 mb-2">
-                      Заявка отправлена!
+                      {t.orderModal.successTitle}
                     </h4>
                     <p className="text-slate-600">
-                      Мы свяжемся с вами в ближайшее время
+                      {t.orderModal.successText}
                     </p>
                   </motion.div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-2">
-                        Имя *
+                        {t.orderModal.name}
                       </label>
                       <input
                         type="text"
@@ -103,13 +105,13 @@ export function OrderModal({ isOpen, onClose }: OrderModalProps) {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
-                        placeholder="Ваше имя"
+                        placeholder={t.orderModal.namePlaceholder}
                       />
                     </div>
 
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-2">
-                        Телефон *
+                        {t.orderModal.phone}
                       </label>
                       <input
                         type="tel"
@@ -136,14 +138,14 @@ export function OrderModal({ isOpen, onClose }: OrderModalProps) {
 
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-2">
-                        Сообщение
+                        {t.orderModal.message}
                       </label>
                       <textarea
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         rows={4}
                         className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none"
-                        placeholder="Расскажите о вашем проекте..."
+                        placeholder={t.orderModal.messagePlaceholder}
                       />
                     </div>
 
@@ -154,11 +156,11 @@ export function OrderModal({ isOpen, onClose }: OrderModalProps) {
                       className="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                     >
                       <Send className="w-5 h-5" />
-                      Отправить заявку
+                      {t.orderModal.submit}
                     </motion.button>
 
                     <p className="text-xs text-slate-500 text-center">
-                      Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
+                      {t.orderModal.consent}
                     </p>
                   </form>
                 )}

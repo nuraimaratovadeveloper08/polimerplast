@@ -1,11 +1,14 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { MessageCircle } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export function FloatingWhatsApp() {
+  const { t } = useLanguage();
+
   return (
     <motion.a
-      href={`https://wa.me/77070402121?text=${encodeURIComponent("Здравствуйте! Можно узнать подробнее об услугах?")}`}
+      href={`https://wa.me/77070402121?text=${encodeURIComponent(t.common.whatsappMessage)}`}
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-full shadow-2xl hover:shadow-green-500/50 transition-all"

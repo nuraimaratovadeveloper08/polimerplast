@@ -1,40 +1,39 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Package, FileText, Layers, ArrowRight } from 'lucide-react';
+import { Package, FileText, Layers } from 'lucide-react';
 import logo from '../assets/logo-paket.png'
 import tar from '../assets/tar.png'
 import pnd from '../assets/pnd.png'
 import prodlogo from '../assets/prodlogo.png'
 import second from '../assets/second2.png'
+import { useLanguage } from '../i18n/LanguageContext';
+import { PackagingOptions } from './PackagingOptions';
+import { HandleOptions } from './HandleOptions';
 
 
 const services = [
   {
     icon: Package,
-    title: 'Изготовление пакетов с логотипом',
-    description: 'Производим полиэтиленовые пакеты с вашим фирменным стилем и логотипом',
     image: prodlogo,
     gradient: ''
   },
   {
     icon: FileText,
-    title: 'Производство упаковочного материала из ПВД и ПНД',
-    description: 'Высококачественные материалы для различных видов упаковки',
     image: second,
     gradient: ''
   },
   {
     icon: Layers,
-    title: 'Готовая продукция в виде пакетов из ПВД и ПНД',
-    description: 'Широкий ассортимент плёнок для различных целей и отраслей',
     image: pnd,
     gradient: ''
   }
 ];
 
 export function Services() {
+  const { t } = useLanguage();
+
   return (
-    <section id="services" className="pt-3 sm:py-20 pb-20 px-4 sm:px-6 lg:px-8">
+    <section id="services" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -43,13 +42,13 @@ export function Services() {
           className="text-center mb-16"
         >
           <span className="inline-block px-4 py-2 bg-blue-500/10 text-blue-600 rounded-full text-sm font-medium mb-4">
-            Наши услуги
+            {t.services.badge}
           </span>
           <h2 className="text-4xl font-bold text-slate-900 mb-4">
-            Что мы предлагаем
+            {t.services.title}
           </h2>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Полный спектр услуг по производству полиэтиленовой упаковки для вашего бизнеса
+            {t.services.subtitle}
           </p>
         </motion.div>
 
@@ -78,7 +77,7 @@ export function Services() {
                 <div className="relative h-56 overflow-hidden">
                   <motion.img 
                     src={service.image}
-                    alt={service.title}
+                    alt={t.services.items[index].title}
                     className="w-full h-full object-cover"
                     whileHover={{ scale: 1.15 }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
@@ -99,16 +98,19 @@ export function Services() {
                 {/* Content */}
                 <div className="p-6">
                   <h3 className="text-xl font-semibold text-slate-900 mb-3">
-                    {service.title}
+                    {t.services.items[index].title}
                   </h3>
                   <p className="text-slate-600">
-                    {service.description}
+                    {t.services.items[index].description}
                   </p>
                 </div>
               </motion.div>
             );
           })}
         </div>
+
+        <PackagingOptions />
+        <HandleOptions />
       </div>
     </section>
   );

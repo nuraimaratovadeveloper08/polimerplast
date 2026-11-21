@@ -2,31 +2,10 @@ import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
-
-const faqs = [
-  {
-    question: 'Как оформить заказ на изготовление пластиковых пакетов?',
-    answer: 'Отправить запрос к нам на почту или написать на ватсапп, менеджер поможет вам оформить заказ.'
-  },
-  {
-    question: 'Каковы сроки изготовления упаковки с логотипом?',
-    answer: 'В среднем срок изготовления занимает 20-25 дней.'
-  },
-  {
-    question: 'Можно ли заказать пакеты с индивидуальным дизайном?',
-    answer: 'Да, вы можете предоставить ваш дизайн для производства пакетов, максимальное количество нанесение 4-х цветов.'
-  },
-  {
-    question: 'Какие виды пластиковых пакетов вы производите?',
-    answer: 'Мы производим пакеты из полиэтилена высшего сорта высокого и низкого давления, ПВД и ПНД.'
-  },
-  {
-    question: 'Каков минимальный объем заказа?',
-    answer: 'Минимальный обьем заказа высчитывается исходя из параметров пакета, пакет с вырубной ручкой от 5000штук, пакет майка от 10 000штук, пленка от 100кг одного размера и дизайна.'
-  }
-];
+import { useLanguage } from '../i18n/LanguageContext';
 
 export function FAQ() {
+  const { t } = useLanguage();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
@@ -42,15 +21,15 @@ export function FAQ() {
             FAQ
           </span>
           <h2 className="text-4xl font-bold text-slate-900 mb-4">
-            Вопросы и ответы
+            {t.faq.title}
           </h2>
           <p className="text-lg text-slate-600">
-            Ответы на часто задаваемые вопросы о нашей продукции
+            {t.faq.subtitle}
           </p>
         </motion.div>
 
         <div className="space-y-4">
-          {faqs.map((faq, index) => (
+          {t.faq.items.map((faq, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}

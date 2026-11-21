@@ -1,10 +1,13 @@
 import React from 'react';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import logo from '../assets/new_logo.png';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export function Footer() {
+  const { t } = useLanguage();
+
   return (
-    <footer id="contacts" className="bg-slate-900 text-white pt-16 pb-8 px-4 sm:px-6 lg:px-8">
+    <footer id="contacts" className="text-white pt-16 pb-8 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: "#334155" }}>
       <div className="max-w-7xl mx-auto">
         <div className="max-w-3xl mx-auto mb-12">
           <div className="text-center mb-8">
@@ -15,8 +18,8 @@ export function Footer() {
               height={100}
               className="mx-auto mb-4 object-contain"
             />
-            <p className="text-slate-400">
-              Производство полиэтиленовой упаковки высшего качества
+            <p className="text-slate-300">
+              {t.footer.tagline}
             </p>
           </div>
 
@@ -26,7 +29,7 @@ export function Footer() {
               <Phone className="w-5 h-5 text-blue-400 flex-shrink-0" />
               <div className="flex flex-col gap-3 w-full">
                 <div>
-                  <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">Отдел сбыта</p>
+                  <p className="text-xs text-slate-300 uppercase tracking-wider mb-1">{t.footer.salesSupplyDepartment}</p>
                   <a href="tel:+77172531330" className="text-slate-300 hover:text-white transition-colors block">
                     +7 (717) 253-13-30
                   </a>
@@ -35,7 +38,7 @@ export function Footer() {
                   </a>
                 </div>
                 <div>
-                  <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">Отдел продаж</p>
+                  <p className="text-xs text-slate-300 uppercase tracking-wider mb-1">{t.footer.salesDepartment}</p>
                   <a href="tel:+77070402121" className="text-slate-300 hover:text-white transition-colors block">
                     +7 (707) 040-21-21
                   </a>
@@ -47,13 +50,13 @@ export function Footer() {
               <Mail className="w-5 h-5 text-purple-400 flex-shrink-0" />
               <div className="flex flex-col gap-3">
                 <div>
-                  <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">Отдел сбыта</p>
+                  <p className="text-xs text-slate-300 uppercase tracking-wider mb-1">{t.footer.salesSupplyDepartment}</p>
                   <a href="mailto:polimer_astana@mail.ru" className="text-slate-300 hover:text-white transition-colors block">
                     polimer_astana@mail.ru
                   </a>
                 </div>
                 <div>
-                  <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">Отдел продаж</p>
+                  <p className="text-xs text-slate-300 uppercase tracking-wider mb-1">{t.footer.salesDepartment}</p>
                   <a href="mailto:salespaketi@gmail.com" className="text-slate-300 hover:text-white transition-colors block">
                     salespaketi@gmail.com
                   </a>
@@ -63,7 +66,7 @@ export function Footer() {
             <div className="sm:col-span-2 flex items-center gap-3 bg-slate-800/50 p-4 rounded-xl">
               <MapPin className="w-5 h-5 text-red-400 flex-shrink-0" />
               <span className="text-slate-300 text-sm">
-                Казахстан, г. Астана, ул. Аксай 11
+                {t.footer.address}
               </span>
             </div>
 
@@ -74,12 +77,12 @@ export function Footer() {
                 className="w-8 h-8"
               />
               <a 
-                href={`https://wa.me/77070402121?text=${encodeURIComponent("Здравствуйте! Можно узнать подробнее об услугах?")}`}
+                href={`https://wa.me/77070402121?text=${encodeURIComponent(t.common.whatsappMessage)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white font-medium"
               >
-                Написать в WhatsApp
+                {t.footer.whatsapp}
               </a>
             </div>
           </div>
@@ -87,8 +90,8 @@ export function Footer() {
 
         <div className="border-t border-slate-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-slate-400 text-sm">
-              © 2026 ТОО "ПОЛИМЕР-ПЛАСТ". Все права защищены
+            <p className="text-slate-300 text-sm">
+              {t.footer.copyright}
             </p>
             {/* <div className="flex gap-6 text-sm text-slate-400">
               <a href="#" className="hover:text-white transition-colors">

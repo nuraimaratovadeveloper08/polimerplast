@@ -2,8 +2,10 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Phone } from 'lucide-react';
 import zavod3 from '../assets/zavod3.jpeg'
+import { useLanguage } from '../i18n/LanguageContext';
 
 export function CTA() {
+  const { t } = useLanguage();
 
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8">
@@ -23,7 +25,7 @@ export function CTA() {
           <div className="absolute inset-0">
             <motion.img 
               src={zavod3}
-              alt="Производство"
+              alt={t.common.production}
               className="w-full h-full object-cover"
               initial={{ scale: 1.1 }}
               whileInView={{ scale: 1 }}
@@ -47,7 +49,7 @@ export function CTA() {
               }}
               className="text-4xl lg:text-5xl font-bold text-white mb-6"
             >
-              Нужна помощь?
+              {t.cta.title}
             </motion.h2>
             
             <motion.p
@@ -62,7 +64,7 @@ export function CTA() {
               viewport={{ once: true }}
               className="text-xl text-white/90 mb-10 max-w-2xl mx-auto"
             >
-              Оставьте свой вопрос и мы свяжемся с вами
+              {t.cta.subtitle}
             </motion.p>
 
             <motion.div
@@ -78,7 +80,7 @@ export function CTA() {
               className="flex flex-wrap justify-center gap-4"
             >
               <motion.a
-                href={`https://wa.me/77070402121?text=${encodeURIComponent("Здравствуйте! Можно узнать подробнее об услугах?")}`}
+                href={`https://wa.me/77070402121?text=${encodeURIComponent(t.common.whatsappMessage)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ 
@@ -88,7 +90,7 @@ export function CTA() {
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-4 bg-white text-purple-600 rounded-xl font-medium shadow-lg hover:shadow-xl transition-all"
               >
-                Оставить заявку
+                {t.common.apply}
               </motion.a>
               
               <motion.a
@@ -110,7 +112,7 @@ export function CTA() {
                 >
                   <Phone className="w-5 h-5" />
                 </motion.div>
-                Позвонить
+                {t.cta.call}
               </motion.a>
             </motion.div>
           </div>
