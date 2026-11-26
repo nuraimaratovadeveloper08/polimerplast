@@ -7,6 +7,8 @@ import { FAQ } from '../components/FAQ';
 import { About } from '../components/About';
 import { CTA } from '../components/CTA';
 import { Partners } from '../components/Partners';
+import { ProductExamples } from '../components/ProductExamples';
+import { Assortment } from '../components/Assortment';
 import { PriceCalculator } from '../components/PriceCalculator';
 import { Footer } from '../components/Footer';
 import { FloatingWhatsApp } from '../components/FloatingWhatsApp';
@@ -17,6 +19,8 @@ export function HomePage() {
     <>
       <Hero />
       <Services />
+      <ProductExamples />
+      <Assortment />
       <PriceCalculator />
       <FAQ />
       <About />

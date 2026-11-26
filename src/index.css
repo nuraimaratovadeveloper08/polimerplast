@@ -2311,3 +2311,114 @@ html, body {
 @media (max-width: 639px) {
   .hero-title { font-size: 1.875rem; line-height: 1.2; }
 }
+
+/* Примеры продукции над калькулятором */
+.examples-intro {
+  max-width: 860px;
+}
+
+.examples-intro__title {
+  font-size: clamp(1.875rem, 4vw, 2.5rem);
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+
+.examples-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  overflow: hidden;
+  background-color: #fff;
+  border-radius: 24px;
+  box-shadow: 0 10px 25px rgb(15 23 42 / 0.08);
+}
+
+.examples-grid__cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  padding: 24px;
+  /* внутренние линии сетки; внешние обрезает overflow у .examples-grid */
+  box-shadow: 1px 0 0 #e2e8f0, 0 1px 0 #e2e8f0;
+}
+
+.examples-grid__img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 12px rgb(15 23 42 / 0.15));
+  transition: transform 0.3s ease;
+}
+
+@media (hover: hover) {
+  .examples-grid__cell:hover .examples-grid__img {
+    transform: scale(1.06);
+  }
+}
+
+@media (width >= 40rem) {
+  .examples-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (width >= 64rem) {
+  .examples-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+}
+
+/* Ассортимент пакетов над калькулятором */
+.assortment-panel {
+  padding: 20px;
+  background-color: #e8eef8;
+  border-radius: 24px;
+}
+
+.assortment-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.assortment-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgb(15 23 42 / 0.06);
+}
+
+.assortment-card__media {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 3;
+  background-color: #f1f5f9;
+}
+
+.assortment-card__media img {
+  position: absolute;
+  inset: 0;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.assortment-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px 16px;
+}
+
+@media (width >= 40rem) {
+  .assortment-panel { padding: 28px; }
+  .assortment-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+}
+
+@media (width >= 64rem) {
+  .assortment-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+}
