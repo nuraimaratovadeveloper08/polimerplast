@@ -4,10 +4,15 @@ import imgGarbage from '../assets/catalog/musor.png';
 import imgMedical from '../assets/catalog/musor-klass-b.png';
 import imgFilm from '../assets/pnd.png';
 import imgBottle from '../assets/catalog/paket-butyl.jpg';
-import imgSerial from '../assets/hero-bags/galmart.webp';
+import imgBags from '../assets/catalog/paket-rulon.webp';
+import imgPrinted from '../assets/catalog/paket-fasovka.webp';
+import imgBread from '../assets/catalog/paket-lavash.webp';
+import imgLinen from '../assets/catalog/paket-belye.webp';
+import imgHanger from '../assets/catalog/paket-evroslot.webp';
+import imgReady from '../assets/catalog/paket-klubnika.webp';
 import { useLanguage } from '../i18n/LanguageContext';
 
-type ItemKey = 'garbage' | 'medical' | 'film' | 'bottles' | 'serial';
+type ItemKey = 'garbage' | 'medical' | 'film' | 'bottles' | 'bags' | 'printed' | 'bread' | 'linen' | 'hanger' | 'ready';
 
 // Порядок карточек; fit: 'cover' для фото с фоном, 'contain' для вырезанных пакетов
 const items: { key: ItemKey; image: string; fit?: 'cover' | 'contain'; position?: string }[] = [
@@ -15,7 +20,12 @@ const items: { key: ItemKey; image: string; fit?: 'cover' | 'contain'; position?
   { key: 'medical', image: imgMedical, fit: 'cover', position: 'center 20%' },
   { key: 'film', image: imgFilm, fit: 'cover' },
   { key: 'bottles', image: imgBottle, fit: 'cover', position: 'center 30%' },
-  { key: 'serial', image: imgSerial, fit: 'contain' }
+  { key: 'bags', image: imgBags, fit: 'cover' },
+  { key: 'printed', image: imgPrinted, fit: 'cover' },
+  { key: 'bread', image: imgBread, fit: 'cover' },
+  { key: 'linen', image: imgLinen, fit: 'cover' },
+  { key: 'hanger', image: imgHanger, fit: 'cover' },
+  { key: 'ready', image: imgReady, fit: 'contain' }
 ];
 
 export function Assortment() {

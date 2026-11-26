@@ -1,22 +1,21 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import schemeFlatBottom from '../assets/packaging/flat-bottom.png';
-import schemeWicket from '../assets/packaging/wicket.png';
 import schemeGusset from '../assets/packaging/gusset.png';
-import schemeFlap from '../assets/packaging/flap.png';
 import schemeBottomFoldFlap from '../assets/packaging/bottom-fold-flap.png';
 import photoGalmart from '../assets/catalog/maika-galmart.jpg';
 import photoVkusmart from '../assets/catalog/maika-vkusmart.jpg';
-import photoBottle from '../assets/catalog/paket-butyl.jpg';
+import photoTaptatti from '../assets/hero-bags/taptatti.webp';
 import { useLanguage } from '../i18n/LanguageContext';
 
 // Порядок совпадает с t.services.packaging.schemes
-const schemes = [schemeFlatBottom, schemeWicket, schemeGusset, schemeFlap, schemeBottomFoldFlap];
+const schemes = [schemeFlatBottom, schemeGusset, schemeBottomFoldFlap];
 
 const handlePhotos = [
   { src: photoGalmart, alt: 'Galmart', fit: 'contain' as const },
   { src: photoVkusmart, alt: 'Вкус Март', fit: 'contain' as const },
-  { src: photoBottle, alt: 'для бутыли 19 л', fit: 'contain' as const }
+  // вырезанный белый пакет: тень, чтобы он не сливался с белой карточкой
+  { src: photoTaptatti, alt: 'Тәп Тәтті', fit: 'contain' as const, shadow: true }
 ];
 
 const blockTitleStyle: React.CSSProperties = {
@@ -84,7 +83,7 @@ export function PackagingOptions() {
               src={photo.src}
               alt={`${text.photoAlt} ${photo.alt}`}
               loading="lazy"
-              style={{ width: '100%', height: '100%', objectFit: photo.fit, padding: photo.fit === 'contain' ? 12 : 0 }}
+              style={{ width: '100%', height: '100%', objectFit: photo.fit, padding: 'shadow' in photo ? 28 : photo.fit === 'contain' ? 12 : 0, filter: 'shadow' in photo ? 'drop-shadow(0 6px 10px rgb(15 23 42 / 0.18))' : undefined }}
             />
           </motion.div>
         ))}

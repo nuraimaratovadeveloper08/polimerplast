@@ -4,7 +4,7 @@ import schemeDiecut from '../assets/handles/diecut.png';
 import schemeDiecutFold from '../assets/handles/diecut-fold.png';
 import schemeReinforcedFold from '../assets/handles/reinforced-fold.png';
 import schemeReinforced from '../assets/handles/reinforced.png';
-import photoBlue from '../assets/handles/photo-blue.jpg';
+import photoHappyCake from '../assets/handles/photo-happycake.webp';
 import photoAvrora from '../assets/handles/photo-avrora.jpg';
 import photoKet from '../assets/handles/photo-ket.jpg';
 import { useLanguage } from '../i18n/LanguageContext';
@@ -13,7 +13,7 @@ import { useLanguage } from '../i18n/LanguageContext';
 const schemes = [schemeDiecut, schemeDiecutFold, schemeReinforcedFold, schemeReinforced];
 
 const photos = [
-  { src: photoBlue, alt: 'голубой' },
+  { src: photoHappyCake, alt: 'Happy Cake' },
   { src: photoAvrora, alt: 'Avrora' },
   { src: photoKet, alt: 'KET Logistic' }
 ];
