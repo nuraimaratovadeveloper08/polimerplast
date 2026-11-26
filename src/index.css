@@ -2115,6 +2115,21 @@ html, body {
   border-radius: 12px;
 }
 
+.calc-input--error {
+  border-color: #dc2626;
+  background-color: #fef2f2;
+}
+
+.calc-error {
+  font-size: 13px;
+  line-height: 1.35;
+  color: #dc2626;
+}
+
+.calc-input.calc-input--error:focus-visible {
+  outline-color: #dc2626;
+}
+
 .calc-input:focus-visible,
 .calc-segment:focus-visible,
 .calc-result__button:focus-visible {
@@ -2195,6 +2210,77 @@ html, body {
   color: #2563eb;
   background-color: #fff;
   border-radius: 12px;
+}
+
+.calc-note {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  padding: 12px 14px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #334155;
+  background-color: #fff;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.calc-note--checked {
+  background-color: #eff6ff;
+  border-color: #2563eb;
+}
+
+.calc-note strong {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.calc-note__title {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 14px;
+}
+
+/* настоящий чекбокс скрыт визуально, но доступен с клавиатуры и для скринридеров */
+.calc-note__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.calc-note__box {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+  color: #fff;
+  background-color: #fff;
+  border: 2px solid #94a3b8;
+  border-radius: 6px;
+}
+
+.calc-note--checked .calc-note__box {
+  background-color: #2563eb;
+  border-color: #2563eb;
+}
+
+.calc-note__input:focus-visible + .calc-note__box {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.calc-result__button:disabled {
+  border: 0;
+  font: inherit;
+  font-weight: 600;
+  opacity: 0.55;
+  cursor: not-allowed;
 }
 
 .calc-result__hint + .calc-result__button,

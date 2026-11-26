@@ -1,10 +1,23 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
+import { Check } from 'lucide-react';
 import { BagColor, BagProduct, priceTable, PriceRow } from '../data/prices';
 import { useLanguage } from '../i18n/LanguageContext';
 
 const formatMoney = (value: number, digits = 0) =>
   value.toLocaleString('ru-RU', { minimumFractionDigits: digits, maximumFractionDigits: digits });
+
+// Выше этого тиража цену считает менеджер
+const MAX_QUANTITY = 10_000_000;
+
+type QuantityError = 'required' | 'min' | 'max' | null;
+
+function getQuantityError(input: string, quantity: number, minQuantity: number): QuantityError {
+  if (input.trim() === '') return 'required';
+  if (quantity < minQuantity) return 'min';
+  if (quantity > MAX_QUANTITY) return 'max';
+  return null;
+}
 
 function getRows(product: BagProduct) {
   return priceTable.filter((row) => row.product === product);
@@ -68,12 +81,14 @@ export function PriceCalculator() {
   const [bagColor, setBagColor] = useState<BagColor>('white');
   const [printColors, setPrintColors] = useState(1);
   const [quantityInput, setQuantityInput] = useState(String(getRows('maika')[0].minQty.white[0]));
+  const [needCliche, setNeedCliche] = useState(false);
 
   const rows = getRows(product);
   const row = rows[sizeIndex];
   const quantity = Number(quantityInput) || 0;
   const minQuantity = row.minQty[bagColor][0];
-  const tierIndex = getTierIndex(row, bagColor, quantity);
+  const quantityError = getQuantityError(quantityInput, quantity, minQuantity);
+  const tierIndex = quantityError ? -1 : getTierIndex(row, bagColor, quantity);
   const unitPrice = tierIndex >= 0 ? row.prices[bagColor][printColors - 1][tierIndex] : null;
   const total = unitPrice !== null ? unitPrice * quantity : null;
 
@@ -84,11 +99,46 @@ export function PriceCalculator() {
   const sizeLabel = (item: PriceRow) =>
     `${item.size}${item.gusset ? `, ${text.gusset} ${item.gusset}` : ''} ${text.cm}, ${item.micron} ${text.micron}`;
 
+  // При смене варианта тираж подставляется минимальным, если поле не трогали
+  // (там стоял прежний минимум), оно пустое или тираж меньше нового минимума
+  const syncQuantity = (nextRow: PriceRow, nextColor: BagColor) => {
+    const nextMin = nextRow.minQty[nextColor][0];
+    if (quantityInput.trim() === '' || quantity === minQuantity || quantity < nextMin) {
+      setQuantityInput(String(nextMin));
+    }
+  };
+
   const handleProductChange = (next: BagProduct) => {
     setProduct(next);
     setSizeIndex(0);
     setQuantityInput(String(getRows(next)[0].minQty[bagColor][0]));
   };
+
+  const handleSizeChange = (nextIndex: number) => {
+    setSizeIndex(nextIndex);
+    syncQuantity(rows[nextIndex], bagColor);
+  };
+
+  const handleColorChange = (nextColor: BagColor) => {
+    setBagColor(nextColor);
+    syncQuantity(row, nextColor);
+  };
+
+  // В поле можно ввести только цифры
+  const handleQuantityChange = (value: string) => {
+    setQuantityInput(value.replace(/\D/g, '').replace(/^0+(?=\d)/, ''));
+  };
+
+  // Пустое поле после ввода возвращаем к минимуму; тираж ниже минимума оставляем и показываем ошибку
+  const handleQuantityBlur = () => {
+    if (quantityInput.trim() === '') setQuantityInput(String(minQuantity));
+  };
+
+  const quantityErrorText =
+    quantityError === 'required' ? text.quantityRequired
+    : quantityError === 'min' ? `${text.quantityMin} ${formatMoney(minQuantity)} ${text.pieces}`
+    : quantityError === 'max' ? text.quantityMax
+    : null;
 
   const message = [
     text.whatsappIntro,
@@ -98,7 +148,8 @@ export function PriceCalculator() {
     `${text.quantity}: ${formatMoney(quantity)} ${text.pieces}`,
     unitPrice !== null && total !== null
       ? `${text.estimate}: ${formatMoney(unitPrice, 2)} ${text.perPiece}, ${formatMoney(total)} ${text.currency}`
-      : ''
+      : '',
+    needCliche ? text.clicheMessage : ''
   ].filter(Boolean).join('\n');
 
   return (
@@ -134,7 +185,7 @@ export function PriceCalculator() {
               <select
                 className="calc-input"
                 value={sizeIndex}
-                onChange={(e) => setSizeIndex(Number(e.target.value))}
+                onChange={(e) => handleSizeChange(Number(e.target.value))}
               >
                 {rows.map((item, index) => (
                   <option key={`${item.size}-${item.micron}`} value={index}>{sizeLabel(item)}</option>
@@ -145,7 +196,7 @@ export function PriceCalculator() {
             <Segmented
               label={text.bagColor}
               value={bagColor}
-              onChange={setBagColor}
+              onChange={handleColorChange}
               options={[
                 { value: 'white' as BagColor, label: text.bagColors.white },
                 { value: 'colored' as BagColor, label: text.bagColors.colored }
@@ -162,14 +213,39 @@ export function PriceCalculator() {
             <label className="calc-field">
               <span className="calc-label">{text.quantity}, {text.pieces}</span>
               <input
-                className="calc-input"
-                type="number"
+                className={quantityErrorText ? 'calc-input calc-input--error' : 'calc-input'}
+                type="text"
                 inputMode="numeric"
-                min={minQuantity}
-                step={1000}
+                pattern="[0-9]*"
+                autoComplete="off"
+                maxLength={9}
                 value={quantityInput}
-                onChange={(e) => setQuantityInput(e.target.value)}
+                placeholder={String(minQuantity)}
+                aria-invalid={quantityErrorText ? true : undefined}
+                aria-describedby={quantityErrorText ? 'calc-quantity-error' : undefined}
+                onChange={(e) => handleQuantityChange(e.target.value)}
+                onBlur={handleQuantityBlur}
               />
+              {quantityErrorText && (
+                <span id="calc-quantity-error" className="calc-error" role="alert">{quantityErrorText}</span>
+              )}
+            </label>
+
+            {/* Клише в сумму не входит: отметка только добавляет его в сообщение менеджеру */}
+            <label className={needCliche ? 'calc-note calc-note--checked' : 'calc-note'}>
+              <input
+                type="checkbox"
+                className="calc-note__input"
+                checked={needCliche}
+                onChange={(e) => setNeedCliche(e.target.checked)}
+              />
+              <span className="calc-note__box" aria-hidden="true">
+                {needCliche && <Check size={14} strokeWidth={3} />}
+              </span>
+              <span>
+                <strong className="calc-note__title">{text.clicheNeed}</strong>
+                <strong>{text.clicheTitle}</strong> {text.clicheText}
+              </span>
             </label>
           </div>
 
@@ -185,6 +261,11 @@ export function PriceCalculator() {
                   </p>
                 )}
               </>
+            ) : quantityError === 'max' ? (
+              <>
+                <span className="calc-result__label">{text.maxQuantityTitle}</span>
+                <p className="calc-result__hint">{text.quantityMax}</p>
+              </>
             ) : (
               <>
                 <span className="calc-result__label">{text.minQuantityTitle}</span>
@@ -193,15 +274,23 @@ export function PriceCalculator() {
               </>
             )}
 
-            <a
-              href={`https://wa.me/77070402121?text=${encodeURIComponent(message)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="calc-result__button"
-            >
-              <WhatsAppIcon />
-              {text.send}
-            </a>
+            {/* Пока тираж не прошёл проверку, расчёт отправить нельзя */}
+            {quantityError ? (
+              <button type="button" className="calc-result__button" disabled>
+                <WhatsAppIcon />
+                {text.send}
+              </button>
+            ) : (
+              <a
+                href={`https://wa.me/77070402121?text=${encodeURIComponent(message)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="calc-result__button"
+              >
+                <WhatsAppIcon />
+                {text.send}
+              </a>
+            )}
             <p className="calc-result__note">{text.disclaimer}</p>
           </div>
         </div>
